@@ -1,67 +1,12 @@
-import React, { FC, useCallback, useRef } from "react";
-import { createGlobalStyle } from "styled-components";
-import { ITemplate, ETemplateType } from "./types";
+import React, { FC, useRef } from "react";
 import Button from "../Button";
+import { useTemplate } from "../../hooks/useTemplate";
+import { ITemplate, ETemplateType } from "./types";
 import * as SC from "./styles";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-`;
 
 const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
-
-  const getStyledComponentsStyles = useCallback(() => {
-    return Array.from(document.querySelectorAll("style"))
-      .map((style) => style.innerHTML)
-      .join("\n");
-  }, []);
-
-  const captureHtml = useCallback(
-    (ref: HTMLDivElement) => {
-      const htmlContent = `
-      <html>
-        <head>
-          <title>Exported Layout</title>
-          <style>
-            ${GlobalStyle.toString()}
-            ${getStyledComponentsStyles()}
-          </style>
-        </head>
-        <body>
-          ${ref.innerHTML}
-        </body>
-      </html>
-    `;
-      return htmlContent;
-    },
-    [getStyledComponentsStyles]
-  );
-
-  const exportHtml = useCallback((htmlContent: string) => {
-    const blob = new Blob([htmlContent], { type: "text/html" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "layout.html";
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }, []);
-
-  const handleExportHtml = useCallback(() => {
-    if (layoutRef.current) {
-      const htmlContent = captureHtml(layoutRef.current);
-      exportHtml(htmlContent);
-    }
-  }, [captureHtml, exportHtml]);
+  const { handleExportHtml, GlobalStyle } = useTemplate();
 
   return type === "Email" ? (
     <>
@@ -155,7 +100,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
           borderRadius="4px"
           padding="14px 24px"
           borderBlockColor="#4764FF"
-          onClick={handleExportHtml}
+          onClick={() => handleExportHtml(layoutRef)}
         />
       </SC.StyledButtonWrapper>
     </>
@@ -306,7 +251,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
           borderRadius="4px"
           padding="14px 24px"
           borderBlockColor="#4764FF"
-          onClick={handleExportHtml}
+          onClick={() => handleExportHtml(layoutRef)}
         />
       </SC.StyledButtonWrapper>
     </>

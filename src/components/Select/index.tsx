@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import * as SC from "./styles";
 import { ISelect, ISelectOption } from "./types";
+import * as SC from "./styles";
 
 const Select: FC<ISelect> = ({ options, onChange }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -16,8 +16,8 @@ const Select: FC<ISelect> = ({ options, onChange }) => {
     >
       {options.map((option: ISelectOption) => (
         <SC.StyledSelectOption
-          onSelect={() => setIsFocused(false)}
           key={option.id}
+          onSelect={() => setIsFocused(false)}
           selected={option.defaultSelected}
           disabled={option.defaultSelected}
           hidden={option.defaultSelected}
