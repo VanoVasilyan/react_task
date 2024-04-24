@@ -18,10 +18,8 @@ const Select: FC<ISelect> = ({ options, onChange }) => {
         <SC.StyledSelectOption
           key={option.id}
           onSelect={() => setIsFocused(false)}
-          selected={option.defaultSelected}
-          disabled={option.defaultSelected}
           hidden={option.defaultSelected}
-          value={option.defaultSelected ? "" : option.value}
+          value={option.defaultSelected ? "default" : option.value}
         >
           {option.value}
         </SC.StyledSelectOption>
