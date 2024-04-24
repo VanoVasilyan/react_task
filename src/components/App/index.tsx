@@ -1,38 +1,27 @@
-import React, { ChangeEvent, FC, useCallback, useState } from "react";
-import selectValue from "./mock/select.json";
-import Select from "./components/Select";
-import TemplateTypes from "./components/TemplateTypes";
-import {
-  emailSignatureData,
-  pageLayoutData,
-  emailSignatureTemplateData,
-  singleImageGridTemplateData,
-  twoImagesGridTemplateData,
-  sliderGridTemplateData,
-} from "./data/templates";
-import Template from "./components/Template";
-import "./App.css";
+import React, { FC } from "react";
+import selectValue from "../../mock/select.json";
+import Select from "../Select";
+import TemplateTypes from "../TemplateTypes";
+import Template from "../Template";
+import { useApp } from "../../hooks/useApp";
+import * as SC from "./styles";
 
 const App: FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string>("");
-  const [selectedTemplateType, setSelectedTemplateType] = useState<string>("");
-
-  const handleOptionChange = useCallback(
-    (value: ChangeEvent<HTMLSelectElement> | string) => {
-      setSelectedOption(value as string);
-    },
-    []
-  );
-
-  const handleTemplateTypeChange = useCallback(
-    (value: ChangeEvent<HTMLDivElement> | string) => {
-      setSelectedTemplateType(value as string);
-    },
-    []
-  );
+  const {
+    selectedOption,
+    selectedTemplateType,
+    emailSignatureData,
+    pageLayoutData,
+    emailSignatureTemplateData,
+    singleImageGridTemplateData,
+    twoImagesGridTemplateData,
+    sliderGridTemplateData,
+    handleOptionChange,
+    handleTemplateTypeChange,
+  } = useApp();
 
   return (
-    <div className="App">
+    <SC.StyledAppContainer>
       <Select options={selectValue} onChange={handleOptionChange} />
       {selectedOption && (
         <TemplateTypes
@@ -62,7 +51,7 @@ const App: FC = () => {
           selectedTemplateType={selectedTemplateType}
         />
       )}
-    </div>
+    </SC.StyledAppContainer>
   );
 };
 
