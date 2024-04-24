@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "defaultSelected": true,
+    "value": "Select Template"
+  },
+  {
+    "id": 2,
+    "defaultSelected": false,
+    "value": "Email Signature Layout"
+  },
+  {
+    "id": 3,
+    "defaultSelected": false,
+    "value": "Page Layout"
+  }
+]
