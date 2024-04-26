@@ -187,31 +187,29 @@ export const sliderGridTemplateData = {
       value: "Lorem Ipsum 4",
     },
   ],
-  sliderImages: [
-    {
-      id: 1,
-      img: SliderMainImage,
-      main: true,
-    },
-    {
-      id: 2,
-      img: SliderSideImage,
-      main: false,
-    },
-    {
-      id: 3,
-      img: SliderSideImage,
-      main: false,
-    },
-    {
-      id: 4,
-      img: SliderSideImage,
-      main: false,
-    },
-    {
-      id: 5,
-      img: SliderSideImage,
-      main: false,
-    },
-  ],
+  sliderImages: {
+    mainSliderImage: SliderMainImage,
+    sideImages: [
+      {
+        id: 1,
+        img: SliderSideImage,
+        main: false,
+      },
+      {
+        id: 2,
+        img: SliderSideImage,
+        main: false,
+      },
+      {
+        id: 3,
+        img: SliderSideImage,
+        main: false,
+      },
+      {
+        id: 4,
+        img: SliderSideImage,
+        main: false,
+      },
+    ],
+  },
 };

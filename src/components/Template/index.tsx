@@ -1,14 +1,15 @@
 import React, { FC, useRef } from "react";
 import Button from "../Button";
 import { useTemplate } from "../../hooks/useTemplate";
-import { ITemplate, ETemplateType } from "./types";
+import { ESelectOptions, ETemplateType } from "../../types/globalTypes";
+import { ITemplate } from "./types";
 import * as SC from "./styles";
 
 const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const { handleExportHtml, GlobalStyle } = useTemplate();
 
-  return type === "Email" ? (
+  return type === ESelectOptions.EMAIL ? (
     <>
       <SC.StyledTemplateMainContainer ref={layoutRef}>
         {selectedTemplateType === ETemplateType.leftAlignLayout ? (
@@ -185,19 +186,17 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
           <SC.StyledSliderGrid>
             <SC.StyledSliderGridLeftBlock>
               <SC.StyledLeftBlockSideImages>
-                {data.sliderImages
-                  .filter((item: any) => !item.main)
-                  .map((elem: any) => (
-                    <SC.StyledLeftBlockSideImageItem key={elem.id}>
-                      <SC.StyledLeftBlockSideImage
-                        src={elem.img}
-                        alt={"Side Image"}
-                      />
-                    </SC.StyledLeftBlockSideImageItem>
-                  ))}
+                {data.sliderImages.sideImages.map((elem: any) => (
+                  <SC.StyledLeftBlockSideImageItem key={elem.id}>
+                    <SC.StyledLeftBlockSideImage
+                      src={elem.img}
+                      alt={"Side Image"}
+                    />
+                  </SC.StyledLeftBlockSideImageItem>
+                ))}
               </SC.StyledLeftBlockSideImages>
               <SC.StyledSliderBlockMainImage
-                src={data.sliderImages.find((el: any) => el.main).img}
+                src={data.sliderImages.mainSliderImage}
               />
             </SC.StyledSliderGridLeftBlock>
             <SC.StyledSliderGridRightBlock>
