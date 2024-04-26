@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
+import selectValue from "../mock/select.json";
 import {
   emailSignatureData,
   pageLayoutData,
@@ -7,6 +8,7 @@ import {
   twoImagesGridTemplateData,
   sliderGridTemplateData,
 } from "../data/templates";
+import { EPageType, ETemplateType } from "../types/globalTypes";
 
 export const useApp = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
@@ -26,16 +28,35 @@ export const useApp = () => {
     []
   );
 
+  const returnTemplateDataByTemplateType = useCallback(
+    (selectedOption: string, selectedTemplateType: string) => {
+      if (selectedOption === EPageType.EMAIL_SIGNATURE_LAYOUT) {
+        return emailSignatureTemplateData;
+      } else if (
+        selectedOption === EPageType.PAGE_LAYOUT &&
+        selectedTemplateType === ETemplateType.singleImageGrid
+      ) {
+        return singleImageGridTemplateData;
+      } else if (
+        selectedOption === EPageType.PAGE_LAYOUT &&
+        selectedTemplateType === ETemplateType.twoImagesGrid
+      ) {
+        return twoImagesGridTemplateData;
+      }
+
+      return sliderGridTemplateData;
+    },
+    []
+  );
+
   return {
     selectedOption,
     selectedTemplateType,
     emailSignatureData,
     pageLayoutData,
-    emailSignatureTemplateData,
-    singleImageGridTemplateData,
-    twoImagesGridTemplateData,
-    sliderGridTemplateData,
+    selectValue,
     handleOptionChange,
     handleTemplateTypeChange,
+    returnTemplateDataByTemplateType,
   };
 };

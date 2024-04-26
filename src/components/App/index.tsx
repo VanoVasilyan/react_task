@@ -1,23 +1,21 @@
 import React, { FC } from "react";
-import selectValue from "../../mock/select.json";
 import Select from "../Select";
 import TemplateTypes from "../TemplateTypes";
 import Template from "../Template";
 import { useApp } from "../../hooks/useApp";
+import { EPageType, ESelectOptions } from "../../types/globalTypes";
 import * as SC from "./styles";
 
 const App: FC = () => {
   const {
+    selectValue,
     selectedOption,
     selectedTemplateType,
     emailSignatureData,
     pageLayoutData,
-    emailSignatureTemplateData,
-    singleImageGridTemplateData,
-    twoImagesGridTemplateData,
-    sliderGridTemplateData,
     handleOptionChange,
     handleTemplateTypeChange,
+    returnTemplateDataByTemplateType,
   } = useApp();
 
   return (
@@ -26,9 +24,13 @@ const App: FC = () => {
       {selectedOption && (
         <TemplateTypes
           handleTemplateTypeChange={handleTemplateTypeChange}
-          type={selectedOption === "Email Signature Layout" ? "Email" : "Page"}
+          type={
+            selectedOption === EPageType.EMAIL_SIGNATURE_LAYOUT
+              ? ESelectOptions.EMAIL
+              : ESelectOptions.PAGE
+          }
           data={
-            selectedOption === "Email Signature Layout"
+            selectedOption === EPageType.EMAIL_SIGNATURE_LAYOUT
               ? emailSignatureData
               : pageLayoutData
           }
@@ -36,18 +38,15 @@ const App: FC = () => {
       )}
       {selectedOption && (
         <Template
-          data={
-            selectedOption === "Email Signature Layout"
-              ? emailSignatureTemplateData
-              : selectedOption === "Page Layout" &&
-                selectedTemplateType === "Single Image Grid"
-              ? singleImageGridTemplateData
-              : selectedOption === "Page Layout" &&
-                selectedTemplateType === "2 Images Grid"
-              ? twoImagesGridTemplateData
-              : sliderGridTemplateData
+          data={returnTemplateDataByTemplateType(
+            selectedOption,
+            selectedTemplateType
+          )}
+          type={
+            selectedOption === EPageType.EMAIL_SIGNATURE_LAYOUT
+              ? ESelectOptions.EMAIL
+              : ESelectOptions.PAGE
           }
-          type={selectedOption === "Email Signature Layout" ? "Email" : "Page"}
           selectedTemplateType={selectedTemplateType}
         />
       )}
