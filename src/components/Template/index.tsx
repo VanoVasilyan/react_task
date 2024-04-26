@@ -1,7 +1,14 @@
 import React, { FC, useRef } from "react";
 import Button from "../Button";
 import { useTemplate } from "../../hooks/useTemplate";
-import { ESelectOptions, ETemplateType } from "../../types/globalTypes";
+import {
+  ESelectOptions,
+  ETemplateType,
+  TBulletPoint,
+  TInfoBlockItem,
+  TSideImage,
+  TSocial,
+} from "../../types/globalTypes";
 import { ITemplate } from "./types";
 import * as SC from "./styles";
 
@@ -17,7 +24,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
             <SC.StyledLeftAlignLayoutLeftBlock>
               <SC.StyledLeftAlignLayoutAvatar src={data.avatar} alt="Avatar" />
               <SC.StyledLeftAlignSocialBlock>
-                {data.social.map((socialItem: any) => (
+                {data.social.map((socialItem: TSocial) => (
                   <SC.StyledLeftAlignSocialBlockItem key={socialItem.id}>
                     <SC.StyledLeftAlignSocialBlockItemImage
                       src={socialItem.icon}
@@ -43,7 +50,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
             <SC.StyledLeftAlignLayoutLeftBlock>
               <SC.StyledLeftAlignLayoutAvatar src={data.avatar} />
               <SC.StyledLeftAlignSocialBlock>
-                {data.social.map((socialItem: any) => (
+                {data.social.map((socialItem: TSocial) => (
                   <SC.StyledLeftAlignSocialBlockItem key={socialItem.id}>
                     <SC.StyledLeftAlignSocialBlockItemImage
                       src={socialItem.icon}
@@ -67,7 +74,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
             <SC.StyledLeftAlignLayoutLeftBlock>
               <SC.StyledLeftAlignLayoutAvatar src={data.avatar} />
               <SC.StyledLeftAlignSocialBlock>
-                {data.social.map((socialItem: any) => (
+                {data.social.map((socialItem: TSocial) => (
                   <SC.StyledLeftAlignSocialBlockItem key={socialItem.id}>
                     <SC.StyledLeftAlignSocialBlockItemImage
                       src={socialItem.icon}
@@ -120,7 +127,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
               <SC.StyledSingleImageGridInfoBlockItem>
                 {data.authorName}
               </SC.StyledSingleImageGridInfoBlockItem>
-              {data.infoBlock.map((infoBlockItem: any) => (
+              {data.infoBlock.map((infoBlockItem: TInfoBlockItem) => (
                 <SC.StyledSingleImageGridInfoBlockItem key={infoBlockItem.id}>
                   <SC.StyledSingleImageGridInfoBlockItemImg
                     src={infoBlockItem.icon}
@@ -137,7 +144,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
               <SC.StyledSingleImageGridSocialBlockItem>
                 Share
               </SC.StyledSingleImageGridSocialBlockItem>
-              {data.social.map((socialItem: any) => (
+              {data.social.map((socialItem: TSocial) => (
                 <SC.StyledSingleImageGridSocialBlockItem key={socialItem.id}>
                   <SC.StyledLeftAlignSocialBlockItemImage
                     src={socialItem.icon}
@@ -154,7 +161,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
                 <SC.StyledTwoImagesGridSocialBlockItem>
                   Share
                 </SC.StyledTwoImagesGridSocialBlockItem>
-                {data.social.map((socialItem: any) => (
+                {data.social.map((socialItem: TSocial) => (
                   <SC.StyledTwoImagesGridSocialBlockItem key={socialItem.id}>
                     <SC.StyledLeftAlignSocialBlockItemImage
                       src={socialItem.icon}
@@ -186,7 +193,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
           <SC.StyledSliderGrid>
             <SC.StyledSliderGridLeftBlock>
               <SC.StyledLeftBlockSideImages>
-                {data.sliderImages.sideImages.map((elem: any) => (
+                {data.sliderImages.sideImages.map((elem: TSideImage) => (
                   <SC.StyledLeftBlockSideImageItem key={elem.id}>
                     <SC.StyledLeftBlockSideImage
                       src={elem.img}
@@ -230,7 +237,7 @@ const Template: FC<ITemplate> = ({ data, type, selectedTemplateType }) => {
                 />
               </SC.StyledButtonControllerWrapper>
               <SC.StyledSliderGridBulletPoints>
-                {data.bulletPoints.map((bulletPoint: any) => (
+                {data.bulletPoints.map((bulletPoint: TBulletPoint) => (
                   <SC.StyledSliderGridBulletPointsItem key={bulletPoint.id}>
                     {bulletPoint.value}
                   </SC.StyledSliderGridBulletPointsItem>
