@@ -1,8 +1,5 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-} from "react";
+import React, { FC, useEffect, useState } from "react";
+import { ESelectOptions } from "../../types/globalTypes";
 import { ITemplateTypes } from "./types";
 import * as SC from "./styles";
 
@@ -37,9 +34,10 @@ const TemplateTypes: FC<ITemplateTypes> = ({
               name="item"
               type="radio"
               value={item.title}
-              onClick={(e: any) => {
-                setSingleTypeSelectedTitle(e.target.value);
-                handleTemplateTypeChange(e.target.value);
+              onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+                const target = e.target as HTMLInputElement;
+                setSingleTypeSelectedTitle(target.value);
+                handleTemplateTypeChange(target.value);
               }}
             />
             <SC.StyledSingleTemplateImage
@@ -52,7 +50,9 @@ const TemplateTypes: FC<ITemplateTypes> = ({
             />
             <SC.StyledSingleTemplateTitle
               type={type}
-              $addMoreMargin={index === data.length - 1 && type !== "Email"}
+              $addMoreMargin={
+                index === data.length - 1 && type !== ESelectOptions.EMAIL
+              }
             >
               {item.title}
             </SC.StyledSingleTemplateTitle>

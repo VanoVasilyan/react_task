@@ -24,8 +24,15 @@ import DescriptionImage from "../assets/DescriptionImage.png";
 
 import SliderMainImage from "../assets/SliderMainImage.png";
 import SliderSideImage from "../assets/SliderSideImage.png";
+import {
+  TEmailSignatureTemplateData,
+  TSingleImageGridTemplateData,
+  TSliderGridTemplateData,
+  TemplateType,
+  TwoImagesGridTemplateDataType,
+} from "../types/globalTypes";
 
-export const emailSignatureData = [
+export const emailSignatureData: TemplateType[] = [
   {
     id: 1,
     title: "Left Align Layout",
@@ -46,7 +53,7 @@ export const emailSignatureData = [
   },
 ];
 
-export const pageLayoutData = [
+export const pageLayoutData: TemplateType[] = [
   {
     id: 1,
     title: "Single Image Grid",
@@ -67,7 +74,7 @@ export const pageLayoutData = [
   },
 ];
 
-export const emailSignatureTemplateData = {
+export const emailSignatureTemplateData: TEmailSignatureTemplateData = {
   name: "Name",
   lastName: "Surname",
   avatar: AvatarIcon,
@@ -93,7 +100,7 @@ export const emailSignatureTemplateData = {
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 
-export const singleImageGridTemplateData = {
+export const singleImageGridTemplateData: TSingleImageGridTemplateData = {
   title: "Title",
   categoryName: "Category name",
   authorName: "Author name",
@@ -131,7 +138,7 @@ export const singleImageGridTemplateData = {
   ],
 };
 
-export const twoImagesGridTemplateData = {
+export const twoImagesGridTemplateData: TwoImagesGridTemplateDataType = {
   coverImage: TwoImagesGridTemplateAvatar,
   social: [
     {
@@ -164,7 +171,7 @@ export const twoImagesGridTemplateData = {
   },
 };
 
-export const sliderGridTemplateData = {
+export const sliderGridTemplateData: TSliderGridTemplateData = {
   title: "Title",
   categoryName: "Category name",
   description:
